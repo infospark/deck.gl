@@ -57,3 +57,32 @@ float round(float x) {
 `
   }
 };
+
+export const offsetShaders = {
+  inject: {
+    'vs:#decl': `
+attribute float instanceOffsets;
+varying float vOffset;
+`,
+    'vs:DECKGL_FILTER_SIZE': `
+  float offsetScale = abs(instanceOffsets * 2.0) + 1.0;
+  size *= offsetScale;
+  vOffset = instanceOffsets;
+`,
+    'fs:#decl': `
+varying float vOffset;
+`,
+    'fs:#main-start': `
+  float isInside;
+  float offsetScale = (abs(vOffset * 2.0) + 1.0);
+  if (vOffset >= 0.0) {
+    isInside = step(vOffset * 2.0 - 1.0, vPathPosition.x * offsetScale);
+  } else {
+    isInside = step(vPathPosition.x * offsetScale, vOffset * 2.0 + 1.0);
+  }
+  if (isInside == 0.0) {
+    discard;
+  }
+`
+  }
+};
