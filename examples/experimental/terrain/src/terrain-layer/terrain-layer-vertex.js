@@ -49,14 +49,15 @@ void main(void) {
   prev = project_position(prev);
   vec3 next = getWorldPosition(positions.xy - vec2(0.0, 1.), texCoords);
   next = project_position(next);
-  curr.z = (curr.z + prev.z + next.z) / 3.;
+  curr.z = (curr.z + prev.z + next.z) / 16.;
 
   vec4 position_worldspace = vec4(curr, 1.0);
-  gl_Position = project_position_to_clipspace(position_worldspace);
+  
+  //gl_Position = project_position_to_clipspace(position_worldspace);
   
   // vNormal = cross(prev - curr, next - curr);
   // set_normal
-  // gl_Position = project_position_to_clipspace(positions, positions64xyLow, vec3(0.0), geometry.position);
+  gl_Position = project_position_to_clipspace(positions, positions64xyLow, vec3(0.0,0.0,curr.z), geometry.position);
   vTexCoord = texCoords;
   DECKGL_FILTER_GL_POSITION(gl_Position, geometry);
 }

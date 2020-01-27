@@ -1,4 +1,5 @@
-export default `
+const glsl = x => x;
+export default glsl`
 #define SHADER_NAME terrain-layer-fragment-shader
 
 #ifdef GL_ES
@@ -190,4 +191,5 @@ void main(void) {
   geometry.uv = vTexCoord;
   DECKGL_FILTER_COLOR(gl_FragColor, geometry);
 }
-`;
+`[0];
+;

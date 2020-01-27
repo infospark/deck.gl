@@ -11,9 +11,10 @@ import { TileLayer } from "@deck.gl/geo-layers";
 const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 export const INITIAL_VIEW_STATE = {
-  longitude: 103.851959,
-  latitude: 1.290270,
-  zoom: 15.5,
+  // Alps 
+  longitude: 6.865,
+  latitude: 45.8327,
+  zoom: 10.5,
   pitch: 45,
   bearing: 0
 };
