@@ -10,7 +10,7 @@ uniform vec4 bounds;
 // attribute vec2 texCoords;
 attribute vec3 positions;
 // attribute vec3 boundPositions;
-attribute vec2 positions64xyLow;
+attribute vec3 position64Low;
 // attribute vec3 instancePickingColors;
 varying vec2 vTexCoord;
 
@@ -57,7 +57,8 @@ void main(void) {
   
   // vNormal = cross(prev - curr, next - curr);
   // set_normal
-  gl_Position = project_position_to_clipspace(positions, positions64xyLow, vec3(0.0,0.0,curr.z), geometry.position);
+  
+  gl_Position = project_position_to_clipspace(positions, position64Low, vec3(0.0,0.0,curr.z), geometry.position);
   vTexCoord = texCoords;
   DECKGL_FILTER_GL_POSITION(gl_Position, geometry);
 }

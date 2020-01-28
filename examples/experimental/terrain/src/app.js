@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {StaticMap} from 'react-map-gl';
 import DeckGL from '@deck.gl/react';
 import { TerrainLayer } from "./terrain-layer/TerrainLayer";
-import { load } from "@loaders.gl/core";
+import { load, registerLoaders } from "@loaders.gl/core";
 import { ImageLoader } from "@loaders.gl/images";
 import { TileLayer } from "@deck.gl/geo-layers";
 
@@ -48,6 +48,8 @@ export class App extends Component {
     this.state = {};
 
     this._deck = null;
+
+    registerLoaders([ImageLoader]);
   }
 
   _renderLayers() {
@@ -74,7 +76,6 @@ export class App extends Component {
           } = props.tile;
 
           // if (north < 43 && south > 34 && east < -118 && west > -126) {
-            console.log(props.tile);
             return new TerrainLayer(props, {
               pickable: false,
               images: props.data,
