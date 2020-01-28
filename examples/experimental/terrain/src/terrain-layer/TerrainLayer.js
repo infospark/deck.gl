@@ -17,7 +17,7 @@ const DEFAULT_TEXTURE_PARAMETERS = {
 const defaultProps = {
   // ...BitmapLayer.defaultProps,
   images: { type: "object", value: [], async: true },
-  cutoffHeightM: { type: "number", value: 40.0 },
+  cutoffHeightM: { type: "number", value: 0.0 },
   peakHeightM: { type: "number", value: 500.0 },
   lngResolution: { type: "number", value: 200.0 },
   latResolution: { type: "number", value: 200.0 }
@@ -203,7 +203,7 @@ export class TerrainLayer extends BitmapLayer {
     if (images.length !== 2) {
       return;
     }
-    // console.log(images, "HI");
+    console.log(images, "HI");
 
     const bitmapTexture = this.state.bitmapTexture;
     const elevationBitmapTexture = this.state.elevationBitmapTexture;
@@ -253,7 +253,7 @@ export class TerrainLayer extends BitmapLayer {
         })
       });
     }
-    // console.log(this.state);
+    console.log(this.state);
   }
 }
 

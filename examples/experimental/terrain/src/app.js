@@ -12,10 +12,10 @@ const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
 
 export const INITIAL_VIEW_STATE = {
   // Alps 
-  longitude: 6.865,
-  latitude: 45.8327,
-  zoom: 10.5,
-  pitch: 45,
+  longitude: 114.16969,
+  latitude: 22.30552,
+  zoom: 13.5,
+  pitch: 55,
   bearing: 0
 };
 
@@ -62,8 +62,8 @@ export class App extends Component {
         // highlightColor,
         opacity: 1,
         // https://wiki.openstreetmap.org/wiki/Zoom_levels
-        minZoom: 0,
-        maxZoom: 23,
+        minZoom: 10,
+        maxZoom: 15,
         maxCacheSize: 500,
 
         getTileData,
@@ -76,10 +76,9 @@ export class App extends Component {
           // if (north < 43 && south > 34 && east < -118 && west > -126) {
             console.log(props.tile);
             return new TerrainLayer(props, {
-              data: [],
               pickable: false,
               images: props.data,
-              cutoffHeightM: 50.0,
+              cutoffHeightM: 0.0,
               peakHeightM: 500.0,
               bounds: [west, south, east, north]
             });
@@ -94,9 +93,6 @@ export class App extends Component {
 
     return (
       <DeckGL
-        ref={ref => {
-          this._deck = ref && ref.deck;
-        }}
         layers={this._renderLayers()}
         initialViewState={INITIAL_VIEW_STATE}
         viewState={viewState}
